@@ -1,0 +1,51 @@
+    1: import sys
+    1: from math import sqrt; from itertools import count, islice
+    1: import numpy as np
+    1: import itertools
+       
+    1: import cProfile
+    1: import pstats
+       
+       
+       
+       
+    1: primes = np.load('prime_small.npy')
+    1: file_name = sys.argv[1]
+       
+    1: def is_devidable(item):
+ 8408:     profile = cProfile.Profile()
+ 8408:     profile.enable()
+ 8408:     if item < 10006:
+ 2565:         return not item in primes
+ 5843:     if item < 99460729:
+ 5843:         array = primes
+           else:
+               array = itertools.chain(primes, islice(count(10007, 2), int((sqrt(item)+1)/2)))
+773839:     for i in array:
+773223:         if i >= item:
+                   return False
+773223:         if item%i == 0:
+ 5227:             return True
+  616:     profile.disable()
+  616:     ps = pstats.Stats(profile)
+  616:     ps.print_stats()
+       
+       
+       
+       
+       
+    1: f = open(file_name, 'r')
+    1: input_numbers = f.readlines()
+       
+    1: maxnum = 1
+ 8409: for line in input_numbers:
+ 8408:     if int(line) > maxnum:
+   12:         maxnum = int(line)
+       
+       
+       
+    1: f.seek(0)
+ 8409: for line in input_numbers:
+ 8408:     number = int(line)
+ 8408:     print(1 if not is_devidable(number) else 0)
+       
