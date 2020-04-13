@@ -1,4 +1,4 @@
-FROM pypy:3-slim
+FROM python:3.8-alpine
 WORKDIR /app
 COPY prime_checker.py .
 
